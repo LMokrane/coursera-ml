@@ -1,0 +1,16 @@
+{
+  "name": "ml",
+  "version": "1.0.0",
+  "description": "bac a sable de ML",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape tests"
+  },
+  "keywords": [
+    "AI",
+    "ML",
+    "coursera"
+  ],
+  "author": "Mokrane LATEB",
+  "license": "ISC"
+}
