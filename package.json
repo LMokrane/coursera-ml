@@ -2,9 +2,9 @@
   "name": "ml",
   "version": "1.0.0",
   "description": "bac a sable de ML",
-  "main": "app/server.js",
+  "main": "app/serveur.js",
   "scripts": {
-    "start": "cross-env NODE_PATH=app node app/server.js",
+    "start": "cross-env NODE_PATH=app node app/serveur.js",
     "test": "cross-env NODE_PATH=app tape tests/**/*.js"
   },
   "keywords": [

@@ -1,7 +1,7 @@
 require('dotenv').config();
 const test = require('tape');
-const request = require('supertest');
-const server = require('server');
+//const request = require('supertest');
+//const serveur = require('serveur');
 const Client = require('Client');
 let client = new Client();
 
