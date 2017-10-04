@@ -17,5 +17,9 @@
     "fast-csv": "^2.4.1",
     "mathjs": "^3.16.4",
     "mnist": "^1.1.0"
+  },
+  "devDependencies": {
+    "supertest": "^3.0.0",
+    "tape": "^4.8.0"
   }
 }
