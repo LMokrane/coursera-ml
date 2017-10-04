@@ -1,23 +1,19 @@
-const csv = require('fast-csv');
+const fs = require('fs');
 
 class Client {
   constructor() {
     let name = 'pop_profit.txt';
-    this.fileName = `${__dirname}/../${process.env.DATA_DIR}/${name}`;
+    this.filePath = `${__dirname}/../${process.env.DATA_DIR}`;
+    this.data = [];
   }
 
-  openFile() {
+  getData(fileName) {
+    let data = this.data;
     return new Promise((resolve, reject) => {
-      let data = '';
-      csv
-       .fromPath(this.fileName)
-       .on("data", d => {
-         data += d;
-       })
-       .on("end", () => {
-         console.log("done");
-         resolve(data);
-       });
+      fs.createReadStream(`${this.filePath}/${fileName}`)
+        .on('data', d => data += d)
+        .on('end', () => resolve(data))
+        .on('error', err => reject(err));
     });
   }
 }

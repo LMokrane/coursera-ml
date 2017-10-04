@@ -17,7 +17,6 @@
   "dependencies": {
     "cross-env": "^5.0.5",
     "dotenv": "^4.0.0",
-    "fast-csv": "^2.4.1",
     "mathjs": "^3.16.4",
     "mnist": "^1.1.0"
   },

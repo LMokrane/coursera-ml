@@ -7,8 +7,11 @@ let client = new Client();
 
 test('CSV', t => {
   t.plan(1);
-  const msg = 'Ouvre le fichier .csv';
-  client.openFile()
-    .then(ok => t.pass(msg))
+  const msg = 'Lecture du fichier .csv';
+  client.getData('pop_profit.txt')
+    .then(data => {
+      console.log(`TEST>data> ${data}`);
+      t.pass(msg);
+    })
     .catch(err => t.fail(err));
 });
