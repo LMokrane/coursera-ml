@@ -14,6 +14,7 @@
   "author": "Mokrane LATEB",
   "license": "ISC",
   "dependencies": {
+    "mathjs": "^3.16.4",
     "mnist": "^1.1.0"
   }
 }
