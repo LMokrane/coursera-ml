@@ -1,4 +1,5 @@
 const fs = require('fs');
+const math = require('mathjs');
 
 class Client {
   constructor() {
@@ -21,6 +22,10 @@ class Client {
         .on('end', () => resolve(this.toMatrix(this.data)))
         .on('error', err => reject(err));
     });
+  }
+
+  getCol(matrix, i) {
+    return matrix.map(line => line[i]);
   }
 }
 

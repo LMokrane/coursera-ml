@@ -5,10 +5,23 @@ const test = require('tape');
 const Client = require('Client');
 let client = new Client();
 
-test('CSV', t => {
-  t.plan(1);
-  const msg = 'Import des données du fichier dans matrice';
-  client.getData('pop_profit.txt')
-    .then(data => t.pass(msg))
-    .catch(err => t.fail(err));
+test('CSV', async t => {
+  t.plan(2);
+
+  let matrix, X, y = [];
+
+  try {
+    matrix = await client.getData('pop_profit.txt');
+    t.pass('Import des données du fichier dans matrice');
+  } catch(err) {
+    t.fail(err);
+  }
+
+  try {
+    X = client.getCol(matrix, 0);
+    y = client.getCol(matrix, 1);
+    t.pass('Extrait la première colonne');
+  } catch(err) {
+    t.fail(err);
+  }
 });
