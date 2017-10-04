@@ -12,7 +12,7 @@ test('CSV', async t => {
   let J = 0;
 
   try {
-    matrix = await client.getData('pop_profit.txt');
+    matrix = await client.getData('ex1data1.txt');
     t.pass('Import des données du fichier dans matrice');
     m = matrix.length;
   } catch(err) {
