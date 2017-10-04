@@ -4,7 +4,7 @@
   "description": "bac a sable de ML",
   "main": "index.js",
   "scripts": {
-    "test": "tape tests"
+    "test": "tape tests/**/*.js"
   },
   "keywords": [
     "AI",
