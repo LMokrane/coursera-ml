@@ -7,11 +7,8 @@ let client = new Client();
 
 test('CSV', t => {
   t.plan(1);
-  const msg = 'Lecture du fichier .csv';
+  const msg = 'Import des données du fichier dans matrice';
   client.getData('pop_profit.txt')
-    .then(data => {
-      console.log(`TEST>data> ${data}`);
-      t.pass(msg);
-    })
+    .then(data => t.pass(msg))
     .catch(err => t.fail(err));
 });
