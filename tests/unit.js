@@ -10,7 +10,7 @@ test('ex1', async t => {
 
   try {
     matrix = await client.getData('ex1data1.txt');
-    t.pass('Import des données du fichier dans matrice');
+    t.equal(client.m, 97, 'm doit etre egal à 97');
   } catch(err) {
     t.fail(err);
   }
@@ -38,7 +38,7 @@ test('ex2', async t => {
 
   try {
     matrix = await client.getData('ex2data1.txt');
-    t.pass('Import des données du fichier dans matrice');
+    t.equal(client.m, 100, 'm doit etre egal à 100');
   } catch(err) {
     t.fail(err);
   }
