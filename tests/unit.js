@@ -44,9 +44,8 @@ test('ex2', async t => {
   }
 
   try {
-    let theta = [[-25.16127], [0.20623], [0.20147]];
-    let g = client.sigmoid(theta);
-    t.equal(g, '0.775', 'Doit retourner 0.775');
+    let g = client.sigmoid(0);
+    t.equal(g, 0.5, 'Doit retourner 0.5');
   } catch(err) {
     t.fail(err);
   }

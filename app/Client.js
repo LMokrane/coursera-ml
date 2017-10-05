@@ -57,6 +57,10 @@ class Client {
     return matrix.reduce((a, v, i) => [[a[0][0] + v[0][0]], [a[1][0] + v[1][0]]]);
   }
 
+  sigmoid(z) {
+    return math.dotDivide(1, 1+math.exp(-z));
+  }
+
   costFunction(X, y, theta) {
     X = X || this.X;
     y = y || this.y;
