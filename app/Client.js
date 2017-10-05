@@ -58,12 +58,12 @@ class Client {
   gradientDescent(X, y, theta, alpha, iterations) {
     let m = y.length;
     theta = theta || math.zeros(2,1);
+    let al = alpha*(1/m);
     for (let i=0; i<iterations; i++) {
       let mul = math.multiply(X, theta);
       let sub = math.subtract(mul, y);
       let dmul = this.dotMultiply(sub, X);
       let sum = this.sum(dmul);
-      let al = alpha*(1/m);
       let tr = math.multiply(al, sum);
       theta = math.subtract(theta, tr);
     }
