@@ -34,13 +34,12 @@ class Client {
 
   dotMultiply(m1, m2) {
     let matrix = [];
-    m1.map((m1line, i) => matrix.push([m1line[0]*m2[i][0], m1line[0]*m2[i][1]]));
+    m1.map((m1line, i) => matrix.push([[m1line[0]*m2[i][0]], [m1line[0]*m2[i][1]]]));
     return matrix;
   }
 
   sum(matrix) {
-    let res = matrix.reduce((a, v, i) => [a[0] + v[0], a[1] + v[1]]);
-    return [[res[0]], [res[1]]];
+    return matrix.reduce((a, v, i) => [[a[0][0] + v[0][0]], [a[1][0] + v[1][0]]]);
   }
 
   costFunction(X, y, theta) {
