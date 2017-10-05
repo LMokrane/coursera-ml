@@ -40,9 +40,8 @@ test('ex2', async t => {
 
   try {
     matrix = await client.getData('ex2data1.txt');
+    t.comment(`m=${client.m} n=${client.n}`);
     t.pass('Import des données du fichier dans matrice');
-    client.m = matrix.length;
-    client.n = matrix[0].length;
   } catch(err) {
     t.fail(err);
   }
