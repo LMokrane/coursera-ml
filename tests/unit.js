@@ -5,7 +5,7 @@ const test = require('tape');
 const Client = require('Client');
 let client = new Client();
 
-test('CSV', async t => {
+test('ex1', async t => {
   t.plan(3);
 
   let matrix, X, y = [];
@@ -29,6 +29,7 @@ test('CSV', async t => {
 
   try {
     J = client.costFunction(X, y);
+    t.comment(`J(theta)=${J}`);
     t.pass('Calcul de cost function J(0)');
   } catch(err) {
     t.fail(err);
