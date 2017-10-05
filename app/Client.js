@@ -5,13 +5,28 @@ class Client {
   constructor() {
     this.filePath = `${__dirname}/../${process.env.DATA_DIR}`;
     this.data = '';
+    this.J = 0;
+    this.m = 0;
+    this.n = 0;
+    this.X = [];
+    this.y = [];
+    this.theta = math.zeros(2,1);
+    this.alpha = 0.01;
+    this.iterations = 1500;
   }
 
   toMatrix(data) {
     const notEmpty = line => line.length > 0;
+    const Xy = line => {
+      line = line.split(',').map(parseFloat);
+      this.y.push([line.pop()]);
+      this.X.push(line);
+    };
     let lines = data.split('\n');
-    let matrix = lines.filter(notEmpty).map(line => line.split(','));
-    return matrix;
+    lines.filter(notEmpty).map(Xy);
+    this.m = this.y.length;
+    this.n = this.X[0].length;
+    return [this.X, this.y];
   }
 
   getData(fileName) {
@@ -34,7 +49,7 @@ class Client {
 
   dotMultiply(m1, m2) {
     let matrix = [];
-    m1.map((m1line, i) => matrix.push([[m1line[0]*m2[i][0]], [m1line[0]*m2[i][1]]]));
+    m1.map((m1line, i) => matrix.push([[m1line*m2[i[0]][0]], [m1line*m2[i[0]][1]]]));
     return matrix;
   }
 
@@ -43,22 +58,25 @@ class Client {
   }
 
   costFunction(X, y, theta) {
-    let J = 0;
-    let m = y.length;
-    theta = theta || math.zeros(2,1);
-    J = 1/(2*m);
+    X = X || this.X;
+    y = y || this.y;
+    theta = theta || this.theta;
+    this.J = 1/(2*this.m);
     let mul = math.multiply(X, theta);
     let sub = math.subtract(mul, y);
     let pow = math.dotPow(sub, 2);
     let sum = math.sum(pow);
-    J = J*sum;
-    return J;
+    this.J = this.J*sum;
+    return this.J;
   }
 
   gradientDescent(X, y, theta, alpha, iterations) {
-    let m = y.length;
-    theta = theta || math.zeros(2,1);
-    let al = alpha*(1/m);
+    X = X || this.X;
+    y = y || this.y;
+    theta = theta || this.theta;
+    alpha = alpha || this.alpha;
+    iterations = iterations || this.iterations;
+    let al = alpha*(1/this.m);
     for (let i=0; i<iterations; i++) {
       let mul = math.multiply(X, theta);
       let sub = math.subtract(mul, y);
@@ -67,6 +85,7 @@ class Client {
       let tr = math.multiply(al, sum);
       theta = math.subtract(theta, tr);
     }
+    this.theta = theta;
     return theta;
   }
 }
