@@ -27,15 +27,15 @@ class Client {
     return matrix.map(line => parseFloat(line[i]));
   }
 
-  addOnes(val) {
-    return [1, val];
+  addOnes(matrix) {
+    return matrix.map(val => [1, val]);
   }
 
   costFunction(X, y, theta) {
     let J = 0;
     let m = y.length;
     theta = theta || math.zeros(2);
-    X = X.map(this.addOnes);
+    X = this.addOnes(X);
     J = 1/(2*m);
     let mul = math.multiply(X, theta);
     let sub = math.subtract(mul, y);
