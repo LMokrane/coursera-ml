@@ -49,17 +49,15 @@ class Client {
   }
 
   dotMultiply(m1, m2) {
-    let matrix = [];
-    m2.map((line, i) => matrix.push(line.map(val => [m1.get([i,0]) * val])));
-    return matrix;
+    return m2.map((line, i) => line.map(val => [m1.get([i,0]) * val]));
   }
 
   sum(matrix) {
-    return matrix.reduce((a, v, i) => [[a[0][0] + v[0][0]], [a[1][0] + v[1][0]]]);
+    return matrix.reduce((a, v) => [[a[0][0] + v[0][0]], [a[1][0] + v[1][0]]]);
   }
 
   sigmoid(z) {
-    return math.dotDivide(1, 1+math.exp(-z));
+    return math.dotDivide(1, math.add(1, math.dotPow(-1, z)));
   }
 
   linear_reg_costFunction(X, y, theta) {
@@ -93,11 +91,20 @@ class Client {
       let sub = math.subtract(mul, y);
       let dmul = this.dotMultiply(sub, X);
       let sum = this.sum(dmul);
-      let tr = math.multiply(al, sum);
+      let tr = math.matrix(math.multiply(al, sum));
       theta = math.subtract(theta, tr);
     }
     this.theta = theta;
     return theta.toArray();
+  }
+
+  logistic_reg_costFunction(X, y, theta) {
+    X = X || this.X;
+    y = y || this.y;
+    theta = theta || this.theta;
+    let thetaX = this.sigmoid(math.multiply(X, theta));
+    this.J = (1/this.m);
+    return this.J;
   }
 }
 
