@@ -40,7 +40,7 @@ test('ex2 - Logistic Regression', async t => {
 
     client.X = client.addOnes(client.X);
     let J = client.logistic_reg_costFunction();
-    t.equal(J, 0.693147, 'Expected cost (approx): 0.693');
+    t.equal(J, 0.693147180559946, 'Expected cost (approx): 0.693');
   } catch(err) {
     t.fail(err);
   }
