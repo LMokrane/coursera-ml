@@ -4,7 +4,7 @@ const test = require('tape');
 //const serveur = require('serveur');
 const Client = require('Client');
 
-test('ex1', async t => {
+test('ex1 - Linear Regression', async t => {
   let client = new Client();
   t.plan(4);
 
@@ -39,7 +39,7 @@ test('ex1', async t => {
 });
 
 
-test('ex2', async t => {
+test('ex2 - Logistic Regression', async t => {
   let client = new Client();
   t.plan(2);
 
