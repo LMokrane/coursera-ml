@@ -77,7 +77,7 @@ class Client {
   linear_reg_predict(X, theta) {
     X = X || this.X;
     theta = theta || this.theta;
-    return math.subset(math.multiply(X, theta), math.index(0));
+    return math.multiply(X, theta).get([0]);
   }
 
   linear_reg_gradientDescent(X, y, theta, alpha, iterations) {
@@ -96,7 +96,7 @@ class Client {
       theta = math.subtract(theta, tr);
     }
     this.theta = theta;
-    return theta;
+    return theta.toArray();
   }
 }
 
