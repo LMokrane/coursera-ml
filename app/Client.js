@@ -74,6 +74,12 @@ class Client {
     return this.J;
   }
 
+  predict_ex1(X, theta) {
+    X = X || this.X;
+    theta = theta || this.theta;
+    return math.subset(math.multiply(X, theta), math.index(0));
+  }
+
   gradientDescent(X, y, theta, alpha, iterations) {
     X = X || this.X;
     y = y || this.y;
