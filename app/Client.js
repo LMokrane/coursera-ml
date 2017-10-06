@@ -102,8 +102,18 @@ class Client {
     X = X || this.X;
     y = y || this.y;
     theta = theta || this.theta;
-    let thetaX = this.sigmoid(math.multiply(X, theta));
     this.J = (1/this.m);
+    let thetaX = this.sigmoid(math.multiply(X, theta));
+    let _y = math.subtract(0, y);
+    let log1 = math.log(thetaX);
+    let dmul = this.dotMultiply(log1, _y);
+    let sub = math.subtract(1, y);
+    let sub2 = math.subtract(1, thetaX);
+    let log2 = math.log(sub2);
+    let dmul2 = this.dotMultiply(log2, sub);
+    let sub3 = math.subtract(dmul, dmul2);
+    let sum = math.sum(sub3);
+    this.J = math.multiply(this.J, sum);
     return this.J;
   }
 }
