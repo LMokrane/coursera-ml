@@ -10,7 +10,7 @@ class Client {
     this.n = 0;
     this.X = [];
     this.y = [];
-    this.theta = math.zeros(2,1);
+    this.theta = [];
     this.alpha = 0.01;
     this.iterations = 1500;
   }
@@ -26,6 +26,7 @@ class Client {
     lines.filter(notEmpty).map(Xy);
     this.m = this.y.length;
     this.n = this.X[0].length;
+    this.theta = math.zeros(this.n+1,1);
     return [this.X, this.y];
   }
 
