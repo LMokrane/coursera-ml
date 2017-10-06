@@ -13,6 +13,7 @@ class Client {
     this.theta = [];
     this.alpha = 0.01;
     this.iterations = 1500;
+    this.thetaX = [];
   }
 
   toMatrix(data) {
@@ -53,7 +54,7 @@ class Client {
   }
 
   sum(matrix) {
-    return matrix.reduce((a, v) => [[a[0][0] + v[0][0]], [a[1][0] + v[1][0]]]);
+    return matrix.reduce((a, v) => a.map((val, j) => [val[0] + v[j][0]]));
   }
 
   sigmoid(z) {
@@ -103,18 +104,29 @@ class Client {
     y = y || this.y;
     theta = theta || this.theta;
     this.J = (1/this.m);
-    let thetaX = this.sigmoid(math.multiply(X, theta));
+    this.thetaX = this.sigmoid(math.multiply(X, theta));
     let _y = math.subtract(0, y);
-    let log1 = math.log(thetaX);
+    let log1 = math.log(this.thetaX);
     let dmul = this.dotMultiply(log1, _y);
     let sub = math.subtract(1, y);
-    let sub2 = math.subtract(1, thetaX);
+    let sub2 = math.subtract(1, this.thetaX);
     let log2 = math.log(sub2);
     let dmul2 = this.dotMultiply(log2, sub);
     let sub3 = math.subtract(dmul, dmul2);
     let sum = math.sum(sub3);
     this.J = math.multiply(this.J, sum);
     return this.J;
+  }
+
+  logistic_reg_gradientDescent(X, y, theta) {
+    X = X || this.X;
+    y = y || this.y;
+    theta = theta || this.theta;
+    let a = 1/this.m;
+    let b = math.subtract(this.thetaX, y);
+    let c = this.dotMultiply(b, X);
+    let d = this.sum(c);
+    return math.multiply(a, d);
   }
 }
 
