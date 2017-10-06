@@ -49,7 +49,7 @@ class Client {
 
   dotMultiply(m1, m2) {
     let matrix = [];
-    m1.map((m1line, i) => matrix.push([[m1line*m2[i[0]][0]], [m1line*m2[i[0]][1]]]));
+    m2.map((line, i) => matrix.push(line.map(val => [m1.get([i,0]) * val])));
     return matrix;
   }
 
