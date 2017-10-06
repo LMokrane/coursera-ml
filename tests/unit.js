@@ -17,21 +17,21 @@ test('ex1', async t => {
 
   try {
     client.X = client.addOnes(client.X);
-    client.costFunction();
+    client.linear_reg_costFunction();
     t.equal(client.J, 32.072733877455654, 'Expected cost value 32.072733877455654');
   } catch(err) {
     t.fail(err);
   }
 
   try {
-    client.gradientDescent();
+    client.linear_reg_gradientDescent();
     t.looseEqual(client.theta._data, [[-3.63029143940436], [1.166362350335582]], 'Expected theta values [[-3.63029143940436], [1.166362350335582]]');
   } catch(err) {
     t.fail(err);
   }
 
   try {
-    let predict = client.predict_ex1([1, 3.5]);
+    let predict = client.linear_reg_predict([1, 3.5]);
     t.looseEqual(predict*10000, 4519.7678677017675, 'For population = 35,000, we predict a profit of 4519.767868');
   } catch(err) {
     t.fail(err);

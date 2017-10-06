@@ -61,7 +61,7 @@ class Client {
     return math.dotDivide(1, 1+math.exp(-z));
   }
 
-  costFunction(X, y, theta) {
+  linear_reg_costFunction(X, y, theta) {
     X = X || this.X;
     y = y || this.y;
     theta = theta || this.theta;
@@ -74,13 +74,13 @@ class Client {
     return this.J;
   }
 
-  predict_ex1(X, theta) {
+  linear_reg_predict(X, theta) {
     X = X || this.X;
     theta = theta || this.theta;
     return math.subset(math.multiply(X, theta), math.index(0));
   }
 
-  gradientDescent(X, y, theta, alpha, iterations) {
+  linear_reg_gradientDescent(X, y, theta, alpha, iterations) {
     X = X || this.X;
     y = y || this.y;
     theta = theta || this.theta;
