@@ -3,7 +3,6 @@ const test = require('tape');
 //const request = require('supertest');
 //const serveur = require('serveur');
 const Client = require('Client');
-
 test('ex1 - Linear Regression', async t => {
   let client = new Client();
   t.plan(4);
@@ -26,10 +25,9 @@ test('ex1 - Linear Regression', async t => {
   }
 });
 
-
 test('ex2 - Logistic Regression', async t => {
   let client = new Client();
-  t.plan(3);
+  t.plan(4);
 
   try {
     matrix = await client.getData('ex2data1.txt');
@@ -41,6 +39,9 @@ test('ex2 - Logistic Regression', async t => {
     client.X = client.addOnes(client.X);
     let J = client.logistic_reg_costFunction();
     t.equal(J, 0.693147180559946, 'Expected cost (approx): 0.693');
+
+    let grad = client.logistic_reg_gradientDescent();
+    t.deepEqual(grad, [[-0.1000], [-12.00921658929115], [-11.262842205513591]],'Expected gradients (approx): [[-0.1000], [-12.0092], [-11.2628]]');
   } catch(err) {
     t.fail(err);
   }
