@@ -71,12 +71,7 @@ class Client {
     X = X || this.X;
     y = y || this.y;
     theta = theta || this.theta;
-    this.J = 1/(2*this.m);
-    let mul = math.multiply(X, theta);
-    let sub = math.subtract(mul, y);
-    let pow = math.dotPow(sub, 2);
-    let sum = math.sum(pow);
-    this.J = this.J*sum;
+    this.J = 1/(2*this.m)*math.sum(math.dotPow(math.subtract(math.multiply(X, theta), y), 2));
     return this.J;
   }
 
