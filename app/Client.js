@@ -89,12 +89,7 @@ class Client {
     iterations = iterations || this.iterations;
     let al = alpha*(1/this.m);
     for (let i=0; i<iterations; i++) {
-      let mul = math.multiply(X, theta);
-      let sub = math.subtract(mul, y);
-      let dmul = this.dotMultiply(sub, X);
-      let sum = this.sum(dmul);
-      let tr = math.matrix(math.multiply(al, sum));
-      theta = math.subtract(theta, tr);
+      theta = math.subtract(theta, math.matrix(math.multiply(al, this.sum(this.dotMultiply(math.subtract(math.multiply(X, theta), y), X)))));
     }
     this.theta = theta;
     return theta.toArray();
