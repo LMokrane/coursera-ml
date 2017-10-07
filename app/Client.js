@@ -118,11 +118,7 @@ class Client {
     X = X || this.X;
     y = y || this.y;
     theta = theta || this.theta;
-    let a = 1/this.m;
-    let b = math.subtract(this.thetaX, y);
-    let c = this.dotMultiply(b, X);
-    let d = this.sum(c);
-    let res = math.multiply(a, d);
+    let res = math.multiply(1/this.m, this.sum(this.dotMultiply(math.subtract(this.thetaX, y), X)));
     this.theta = math.matrix(res);
     return res;
   }
