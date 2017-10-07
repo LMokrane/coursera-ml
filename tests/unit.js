@@ -46,8 +46,8 @@ test('ex2 - Logistic Regression', async t => {
     let predict = client.logistic_reg_predict([[1, 45, 85]], [[-25.16127], [0.20623], [0.20147]]);
     t.equal(predict.get([0,0]), 0.7762647150068515, 'Expected value: 0.775 +/- 0.002');
 
-    predict = client.logistic_reg_predict2();
-    t.equal(predict.get([0,0]), 0.7762647150068515, 'Vector of 0\'s and 1\'s');
+    predict = client.logistic_reg_predict2(null, [[-25.16127], [0.20623], [0.20147]]);
+    t.deepEqual(predict.toArray(), [ [ 0 ], [ 0 ], [ 0 ], [ 1 ], [ 1 ], [ 0 ], [ 1 ], [ 0 ], [ 1 ], [ 1 ], [ 1 ], [ 0 ], [ 1 ], [ 1 ], [ 0 ], [ 1 ], [ 0 ], [ 0 ], [ 1 ], [ 1 ], [ 0 ], [ 1 ], [ 0 ], [ 0 ], [ 1 ], [ 1 ], [ 1 ], [ 1 ], [ 0 ], [ 0 ], [ 1 ], [ 1 ], [ 0 ], [ 0 ], [ 0 ], [ 0 ], [ 1 ], [ 1 ], [ 0 ], [ 0 ], [ 1 ], [ 0 ], [ 1 ], [ 1 ], [ 0 ], [ 0 ], [ 1 ], [ 1 ], [ 1 ], [ 1 ], [ 1 ], [ 1 ], [ 1 ], [ 0 ], [ 0 ], [ 0 ], [ 1 ], [ 1 ], [ 1 ], [ 1 ], [ 1 ], [ 0 ], [ 0 ], [ 0 ], [ 0 ], [ 0 ], [ 1 ], [ 0 ], [ 1 ], [ 1 ], [ 0 ], [ 1 ], [ 1 ], [ 1 ], [ 1 ], [ 1 ], [ 1 ], [ 1 ], [ 0 ], [ 1 ], [ 1 ], [ 1 ], [ 1 ], [ 0 ], [ 1 ], [ 1 ], [ 0 ], [ 1 ], [ 1 ], [ 0 ], [ 1 ], [ 1 ], [ 0 ], [ 1 ], [ 1 ], [ 1 ], [ 1 ], [ 1 ], [ 0 ], [ 1 ] ], 'Vector of 0\'s and 1\'s');
 
     let accuracy = client.logistic_reg_accuracy(p);
     t.equal(accuracy, 89.0, 'Expected accuracy (approx): 89.0');
