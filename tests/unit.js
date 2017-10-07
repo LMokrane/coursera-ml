@@ -27,7 +27,7 @@ test('ex1 - Linear Regression', async t => {
 
 test('ex2 - Logistic Regression', async t => {
   let client = new Client();
-  t.plan(4);
+  t.plan(7);
 
   try {
     matrix = await client.getData('ex2data1.txt');
@@ -42,6 +42,15 @@ test('ex2 - Logistic Regression', async t => {
 
     let grad = client.logistic_reg_gradientDescent();
     t.deepEqual(grad, [[-0.1000], [-12.00921658929115], [-11.262842205513591]],'Expected gradients (approx): [[-0.1000], [-12.0092], [-11.2628]]');
+
+    let predict = client.logistic_reg_predict([[1, 45, 85]], [[-25.16127], [0.20623], [0.20147]]);
+    t.equal(predict.get([0,0]), 0.7762647150068515, 'For a student with scores 45 and 85, we predict an admission probability of 0.775');
+
+    J = client.r_logistic_reg_costFunction();
+    t.equal(J, 0.693147180559946, 'Expected cost (approx): 0.693');
+
+    grad = client.r_logistic_reg_gradientDescent();
+    t.deepEqual(grad, [[0.0085], [0.0188], [0.0001], [0.0503], [0.0115]],'Expected gradients (approx) - first five values only: [[0.0085], [0.0188], [0.0001], [0.0503], [0.0115]]');
   } catch(err) {
     t.fail(err);
   }

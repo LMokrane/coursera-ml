@@ -58,7 +58,19 @@ class Client {
   }
 
   sigmoid(z) {
-    return math.dotDivide(1, math.add(1, math.dotPow(-1, z)));
+    let _z = math.subtract(0, z);
+    let a = math.exp(_z);
+    let b = math.add(1, a);
+    let c = math.dotDivide(1, b);
+    return c;
+  }
+
+  logistic_reg_predict(X, theta) {
+    X = X || this.X;
+    theta = math.matrix(theta) || this.theta;
+    let thetaX = math.multiply(X, theta);
+    let res = this.sigmoid(thetaX);
+    return res;
   }
 
   linear_reg_costFunction(X, y, theta) {
@@ -126,7 +138,9 @@ class Client {
     let b = math.subtract(this.thetaX, y);
     let c = this.dotMultiply(b, X);
     let d = this.sum(c);
-    return math.multiply(a, d);
+    let res = math.multiply(a, d);
+    this.theta = math.matrix(res);
+    return res;
   }
 }
 
