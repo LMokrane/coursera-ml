@@ -52,7 +52,7 @@ test('ex2 - Logistic Regression', async t => {
     let accuracy = client.logistic_reg_accuracy(predict);
     t.equal(accuracy, 89.0, 'Expected accuracy (approx): 89.0');
 
-    J = client.r_logistic_reg_costFunction();
+    J = client.r_logistic_reg_costFunction(null, null, [[0], [0], [0]], 1);
     t.equal(J, 0.693147180559946, 'Expected cost (approx): 0.693');
 
     grad = client.r_logistic_reg_gradientDescent();

@@ -131,6 +131,23 @@ class Client {
   logistic_reg_accuracy(p) {
     return math.mean(math.multiply(100, math.equal(p, this.y).map(this.boolean)));
   }
+
+  subset(matrix) {
+    matrix = math.squeeze(matrix).toArray();
+    matrix.pop();
+    return math.matrix(matrix);
+  }
+
+  r_logistic_reg_costFunction(X, y, theta, lambda) {
+    X = X || this.X;
+    y = y || this.y;
+    theta = theta ? math.matrix(theta) : this.theta;
+    this.thetaX = this.sigmoid(math.multiply(X, theta));
+    this.J = math.multiply(1/this.m, math.sum(math.subtract(this.dotMultiply(math.log(this.thetaX), math.subtract(0, y)), this.dotMultiply(math.log(math.subtract(1, this.thetaX)), math.subtract(1, y)))));
+
+    this.J += math.multiply(lambda/(2*this.m), math.sum(math.dotPow(this.subset(theta), 2)));
+    return this.J;
+  }
 }
 
 module.exports = Client;
