@@ -123,6 +123,14 @@ class Client {
     let res = this.sigmoid(math.multiply(X, theta));
     return res.map(this.binary);
   }
+
+  boolean(val) {
+    return val === true ? 1 : 0;
+  }
+
+  logistic_reg_accuracy(p) {
+    return math.mean(math.multiply(100, math.equal(p, this.y).map(this.boolean)));
+  }
 }
 
 module.exports = Client;
