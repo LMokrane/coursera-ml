@@ -61,12 +61,6 @@ class Client {
     return math.dotDivide(1, math.add(1, math.exp(math.subtract(0, z))));
   }
 
-  logistic_reg_predict(X, theta) {
-    X = X || this.X;
-    theta = math.matrix(theta) || this.theta;
-    return this.sigmoid(math.multiply(X, theta));
-  }
-
   linear_reg_costFunction(X, y, theta) {
     X = X || this.X;
     y = y || this.y;
@@ -111,6 +105,23 @@ class Client {
     let res = math.multiply(1/this.m, this.sum(this.dotMultiply(math.subtract(this.thetaX, y), X)));
     this.theta = math.matrix(res);
     return res;
+  }
+
+  logistic_reg_predict(X, theta) {
+    X = X || this.X;
+    theta = theta ? math.matrix(theta) : this.theta;
+    return this.sigmoid(math.multiply(X, theta));
+  }
+
+  binary(val) {
+    return val >= 0.5 ? 1 : 0;
+  }
+
+  logistic_reg_predict2(X, theta) {
+    X = X || this.X;
+    theta = theta ? math.matrix(theta) : this.theta;
+    let res = this.sigmoid(math.multiply(X, theta));
+    return res.map(this.binary);
   }
 }
 
