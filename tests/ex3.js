@@ -5,7 +5,7 @@ const test = require('tape');
 const Client = require('Client');
 const mnist = require('mnist');
 
-test('ex2 - Logistic Regression', t => {
+test('ex3 - Multi-class Classification and Neural Networks', t => {
   t.plan(2);
 
   try {
