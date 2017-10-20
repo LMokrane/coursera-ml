@@ -4,8 +4,8 @@
   "description": "bac a sable de ML",
   "main": "app/serveur.js",
   "scripts": {
-    "start": "cross-env NODE_PATH=app node app/serveur.js",
-    "test": "cross-env NODE_PATH=app tape tests/**/*.js"
+    "stchtart": "cross-env NODE_PATH=app node app/serveur.js",
+    "test": "cross-env NODE_PATH=app tape-watch tests/**/*.js"
   },
   "keywords": [
     "AI",
@@ -22,6 +22,7 @@
   },
   "devDependencies": {
     "supertest": "^3.0.0",
-    "tape": "^4.8.0"
+    "tape": "^4.8.0",
+    "tape-watch": "^2.3.0"
   }
 }
