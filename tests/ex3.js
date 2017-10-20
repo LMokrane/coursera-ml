@@ -6,7 +6,7 @@ const Client = require('Client');
 const mnist = require('mnist');
 
 test('ex3 - Multi-class Classification and Neural Networks', t => {
-  t.plan(3);
+  t.plan(4);
 
   try {
     let client = new Client();
@@ -14,11 +14,17 @@ test('ex3 - Multi-class Classification and Neural Networks', t => {
     let y_t = [[1], [0], [1], [0], [1]];
     let theta_t = [[-2], [-1], [1], [2]];
     let lambda_t = 3;
+    client.X = X_t;
+    client.y = y_t;
     client.m = X_t.length;
     client.n = X_t[0].length;
-    let J = client.r_logistic_reg_costFunction(X_t, y_t, theta_t, lambda_t);
+    let J = client.r_logistic_reg_costFunction(null, null, theta_t, lambda_t);
     t.equal(J, 2.534819396109744, 'Expected cost: 2.534819');
 
+    let grad = client.r_logistic_reg_gradientDescent(null, null, theta_t, lambda_t);
+    t.deepEqual(grad, [[0.14656136792489802], [-0.5485584118531603], [0.7247222721092885], [1.3980029560717375]], 'Expected gradients: [[0.146561], [-0.548558], [0.724722], [1.398003]]');
+
+    client = new Client();
     let set = mnist.set(5000, 1000);
     let trainingSet = set.training;
     const fulfill = o => {

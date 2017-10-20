@@ -158,13 +158,13 @@ class Client {
   r_logistic_reg_gradientDescent(X, y, theta, lambda) {
     X = X || this.X;
     y = y || this.y;
-    theta = theta || this.theta;
+    theta = theta ? math.matrix(theta) : this.theta;
     this.thetaX = this.sigmoid(math.multiply(X, theta));
     let grad = math.multiply(1/this.m, this.sum(this.dotMultiply(math.subtract(this.thetaX, y), X)));
     let g1 = math.resize(grad, [1,1]);
-    let gn = math.subset(grad, math.index(math.range(1,this.n+1), 0));
+    let gn = math.subset(grad, math.index(math.range(1,math.size(grad)[0]), 0));
     let tmp = theta.toArray();
-    let thetan = math.subset(tmp, math.index(math.range(1, this.n+1), 0));
+    let thetan = math.subset(tmp, math.index(math.range(1, theta.size()[0]), 0));
     let l = math.multiply(lambda/this.m, thetan);//math.transpose(thetan));
     let add = math.add(l, gn);
     this.theta = g1.concat(add);
