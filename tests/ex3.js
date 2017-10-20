@@ -6,17 +6,21 @@ const Client = require('Client');
 const mnist = require('mnist');
 
 test('ex2 - Logistic Regression', t => {
-  t.plan(1);
+  t.plan(2);
 
   try {
     let client = new Client();
     let set = mnist.set(5000, 1000);
     let trainingSet = set.training;
-    let matrix = [];
-    const toMatrix = o => matrix.push([o.input, o.output]);
-    trainingSet.map(toMatrix);
-    client.getDataFromMatrix(matrix);
+    const fulfill = o => {
+      client.X.push(o.input);
+      client.y.push(o.output);
+    };
+    trainingSet.map(fulfill);
+    client.m = client.X.length;
+    client.n = client.X[0].length;
     t.equal(client.m, 5000, 'm doit etre egal à 5000');
+    t.equal(client.n, 784, 'n doit etre egal à 784 (28*28)');
 
   } catch(err) {
     t.fail(err);

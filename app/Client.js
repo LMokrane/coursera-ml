@@ -43,7 +43,7 @@ class Client {
   getDataFromMatrix(m) {
     let size = math.size(m);
     this.m = size[0];
-    console.log(size);
+    this.n = size[2];
   }
 
   getCol(matrix, i) {
