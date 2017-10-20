@@ -8,7 +8,7 @@ test('ex1 - Linear Regression', async t => {
   t.plan(4);
 
   try {
-    matrix = await client.getData('ex1data1.txt');
+    matrix = await client.getDataFromFile('ex1data1.txt');
     t.equal(client.m, 97, 'm doit etre egal à 97');
 
     client.X = client.addOnes(client.X);

@@ -31,13 +31,19 @@ class Client {
     return [this.X, this.y];
   }
 
-  getData(fileName) {
+  getDataFromFile(fileName) {
     return new Promise((resolve, reject) => {
       fs.createReadStream(`${this.filePath}/${fileName}`)
         .on('data', d => this.data += d)
         .on('end', () => resolve(this.toMatrix(this.data)))
         .on('error', err => reject(err));
     });
+  }
+
+  getDataFromMatrix(m) {
+    let size = math.size(m);
+    this.m = size[0];
+    console.log(size);
   }
 
   getCol(matrix, i) {
