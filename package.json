@@ -5,7 +5,7 @@
   "main": "app/serveur.js",
   "scripts": {
     "stchtart": "cross-env NODE_PATH=app node app/serveur.js",
-    "test": "cross-env NODE_PATH=app tape-watch tests/**/*.js"
+    "test": "cross-env NODE_PATH=app tape-watch tests/*"
   },
   "keywords": [
     "AI",
