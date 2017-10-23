@@ -1,24 +1,25 @@
 require('dotenv').config();
 const test = require('tape');
-//const request = require('supertest');
-//const serveur = require('serveur');
-const Client = require('Client');
+const Learning = require('Learning');
 test('ex1 - Linear Regression', async t => {
-  let client = new Client();
   t.plan(4);
 
   try {
-    matrix = await client.getDataFromFile('ex1data1.txt');
-    t.equal(client.m, 97, 'm doit etre egal à 97');
+    let machine = new Learning();
+    matrix = await machine.getDataFromFile('./data/ex1data1.txt');
+    machine = new Learning(matrix[0], matrix[1]);
+    t.equal(machine.m, 97, 'm doit etre egal à 97');
 
-    client.X = client.addOnes(client.X);
-    let J = client.linear_reg_costFunction();
+    machine.X = machine.addOnes(machine.X);
+    let theta = [[0], [0]];
+    let J = machine.linear_reg_costFunction(theta);
     t.equal(J, 32.072733877455654, 'Expected cost value 32.072733877455654');
 
-    let grad = client.linear_reg_gradientDescent();
+    let grad = machine.linear_reg_gradientDescent(theta, 0.01, 1500);
     t.deepEqual(grad, [[-3.63029143940436], [1.166362350335582]], 'Expected theta values [[-3.63029143940436], [1.166362350335582]]');
 
-    let predict = client.linear_reg_predict([1, 3.5]);
+    theta = [1, 3.5];
+    let predict = machine.linear_reg_predict(theta);
     t.equal(predict*10000, 4519.7678677017675, 'For population = 35,000, we predict a profit of 4519.767868');
   } catch(err) {
     t.fail(err);

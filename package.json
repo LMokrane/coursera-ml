@@ -5,7 +5,7 @@
   "main": "app/serveur.js",
   "scripts": {
     "stchtart": "cross-env NODE_PATH=app node app/serveur.js",
-    "test": "cross-env NODE_PATH=app tape-watch tests/*"
+    "test": "cross-env NODE_PATH=app tape tests/*"
   },
   "keywords": [
     "AI",
@@ -15,14 +15,13 @@
   "author": "Mokrane LATEB",
   "license": "ISC",
   "dependencies": {
-    "cross-env": "^5.0.5",
+    "cross-env": "^5.1.0",
     "dotenv": "^4.0.0",
-    "mathjs": "^3.16.4",
+    "mathjs": "^3.16.5",
     "mnist": "^1.1.0"
   },
   "devDependencies": {
     "supertest": "^3.0.0",
-    "tape": "^4.8.0",
-    "tape-watch": "^2.3.0"
+    "tape": "^4.8.0"
   }
 }
