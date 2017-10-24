@@ -18,8 +18,8 @@ test('ex1 - Linear Regression', async t => {
     let grad = machine.linear_reg_gradientDescent(theta, 0.01, 1500);
     t.deepEqual(grad, [[-3.63029143940436], [1.166362350335582]], 'Expected theta values [[-3.63029143940436], [1.166362350335582]]');
 
-    theta = [1, 3.5];
-    let predict = machine.linear_reg_predict(theta);
+    let X = [1, 3.5];
+    let predict = machine.linear_reg_predict(X, grad);
     t.equal(predict*10000, 4519.7678677017675, 'For population = 35,000, we predict a profit of 4519.767868');
   } catch(err) {
     t.fail(err);

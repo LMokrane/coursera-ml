@@ -79,14 +79,15 @@ class Learning {
     return J;
   }
 
-  linear_reg_predict(theta) {
-    return math.multiply(this.X, theta).get([0]);
+  linear_reg_predict(X, theta) {
+    X = X || this.X;
+    return math.multiply(X, theta);
   }
 
   linear_reg_gradientDescent(theta, alpha, iterations) {
     let al = alpha*(1/this.m);
     for (let i=0; i<iterations; i++) {
-      theta = math.subtract(theta, math.matrix(math.multiply(al, this.sum(this.dotMultiply(math.subtract(math.multiply(this.X, theta), this.y), this.X)))));
+      theta = math.subtract(theta, math.multiply(al, this.sum(this.dotMultiply(math.subtract(math.multiply(this.X, theta), this.y), this.X))));
     }
     return theta;
   }
