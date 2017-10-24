@@ -2,7 +2,7 @@ require('dotenv').config();
 const test = require('tape');
 const Learning = require('Learning');
 test('ex1 - Linear Regression', async t => {
-  t.plan(4);
+  t.plan(5);
 
   try {
     let machine = new Learning();
@@ -21,6 +21,10 @@ test('ex1 - Linear Regression', async t => {
     let X = [1, 3.5];
     let predict = machine.linear_reg_predict(X, grad);
     t.equal(predict*10000, 4519.7678677017675, 'For population = 35,000, we predict a profit of 4519.767868');
+
+    X = [1, 7];
+    predict = machine.linear_reg_predict(X, grad);
+    t.equal(predict*10000, 45342.45012944714, 'For population = 70,000, we predict a profit of 45342.450129');
   } catch(err) {
     t.fail(err);
   }
