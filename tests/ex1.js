@@ -30,3 +30,15 @@ test('ex1 - Linear Regression', async t => {
   }
 });
 
+test('ex1 - Linear regression with multiple variables', async t => {
+  t.plan(1);
+
+  try {
+    let machine = new Learning();
+    matrix = await machine.getDataFromFile('./data/ex1data2.txt');
+    machine = new Learning(matrix[0], matrix[1]);
+    t.equal(machine.m, 47, 'm doit etre egal à 47');
+  } catch(err) {
+    t.fail(err);
+  }
+});
