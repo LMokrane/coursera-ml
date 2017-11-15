@@ -12,7 +12,7 @@ routeur.post('/', (req, res) => {
   let Theta2 = [];
   let machine = new Learning(X);
   try {
-    let p = predict_nn(X, Theta1, Theta2);
+    let p = machine.predict_nn(X, Theta1, Theta2);
     res.send(p);
   } catch (err) {
     res.status(500).send(err);
