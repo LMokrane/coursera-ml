@@ -17,8 +17,11 @@
   "dependencies": {
     "cross-env": "^5.1.0",
     "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "helmet": "^3.9.0",
     "mathjs": "^3.16.5",
-    "mnist": "^1.1.0"
+    "mnist": "^1.1.0",
+    "pug": "^2.0.0-rc.4"
   },
   "devDependencies": {
     "supertest": "^3.0.0",
