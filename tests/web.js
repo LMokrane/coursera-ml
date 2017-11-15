@@ -3,7 +3,6 @@ const test = require('tape');
 const request = require('supertest');
 const serveur = require('serveur');
 const Learning = require('Learning');
-const mnist = require('mnist');
 
 test('Web server', t => {
   t.plan(3);
