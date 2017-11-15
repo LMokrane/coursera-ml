@@ -4,7 +4,7 @@
   "description": "bac a sable de ML",
   "main": "app/serveur.js",
   "scripts": {
-    "stchtart": "cross-env NODE_PATH=app node app/serveur.js",
+    "start": "cross-env NODE_PATH=app node app/serveur.js",
     "test": "cross-env NODE_PATH=app tape tests/**/*.js | tap-spec"
   },
   "keywords": [
@@ -15,6 +15,7 @@
   "author": "Mokrane LATEB",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.18.2",
     "cross-env": "^5.1.0",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
