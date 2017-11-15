@@ -2,7 +2,6 @@ let routeur = require('express').Router();
 const Learning = require('Learning');
 
 routeur.get('/', (req, res) => {
-  req.log.info(`GET ${req.baseUrl}`);
   res.render('index', {titre: process.env.APP});
 });
 
