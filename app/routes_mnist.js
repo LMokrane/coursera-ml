@@ -1,7 +1,7 @@
-let routeur = require('express').Router();
+let mnist = require('express').Router();
 const Learning = require('Learning');
 
-routeur.post('/', (req, res) => {
+mnist.post('/predict', (req, res) => {
   let X = req.body;
   let Theta1 = [];
   let Theta2 = [];
@@ -15,4 +15,4 @@ routeur.post('/', (req, res) => {
   }
 });
 
-module.exports = routeur;
+module.exports = mnist;
