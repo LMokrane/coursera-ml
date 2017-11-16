@@ -5,7 +5,7 @@ const serveur = require('serveur');
 const Learning = require('Learning');
 
 test('Web server', t => {
-  t.plan(6);
+  t.plan(8);
 
   request(serveur)
     .get('/')
@@ -52,6 +52,26 @@ test('Web server', t => {
     .expect(404)
     .end((err, res) => {
       const msg = '404: POST /coursera/mnist';
+      if (err) return t.fail(msg);
+      t.pass(msg);
+    });
+
+  request(serveur)
+    .post(`/${process.env.APP}/mnist/cost`)
+    .send(data)
+    .expect(200)
+    .end((err, res) => {
+      const msg = 'POST /coursera/mnist/cost';
+      if (err) return t.fail(msg);
+      t.pass(msg);
+    });
+
+  request(serveur)
+    .post(`/${process.env.APP}/mnist/grad`)
+    .send(data)
+    .expect(200)
+    .end((err, res) => {
+      const msg = 'POST /coursera/mnist/grad';
       if (err) return t.fail(msg);
       t.pass(msg);
     });
