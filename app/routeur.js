@@ -1,12 +1,6 @@
 let routeur = require('express').Router();
 const Learning = require('Learning');
 
-/*
-routeur.get('/', (req, res) => {
-  res.render('index', {titre: process.env.APP});
-});
-*/
-
 routeur.post('/', (req, res) => {
   let X = req.body;
   let Theta1 = [];
