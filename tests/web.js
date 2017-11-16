@@ -11,7 +11,7 @@ test('Web server', t => {
     .get('/')
     .expect(404)
     .end((err, res) => {
-      const msg = 'Erreur 404 : /';
+      const msg = '404: GET /';
       if (err) return t.fail(msg);
       t.pass(msg);
     });
@@ -20,7 +20,7 @@ test('Web server', t => {
     .get(`/${process.env.APP}`)
     .expect(404)
     .end((err, res) => {
-      const msg = 'Erreur 404 : /coursera';
+      const msg = '404: GET /coursera';
       if (err) return t.fail(msg);
       t.pass(msg);
     });
@@ -29,7 +29,7 @@ test('Web server', t => {
     .get(`/${process.env.APP}/mnist`)
     .expect(404)
     .end((err, res) => {
-      const msg = 'Erreur 404 : /coursera/mnist';
+      const msg = '404: GET /coursera/mnist';
       if (err) return t.fail(msg);
       t.pass(msg);
     });
