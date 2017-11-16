@@ -5,7 +5,7 @@
   "main": "app/serveur.js",
   "scripts": {
     "start": "cross-env NODE_PATH=app node app/serveur.js",
-    "test": "cross-env NODE_PATH=app tape tests/**/*.js | tap-spec"
+    "test": "cross-env NODE_PATH=app tape-watch tests/**/*.js -cp tap-spec"
   },
   "keywords": [
     "AI",
@@ -27,6 +27,7 @@
   "devDependencies": {
     "supertest": "^3.0.0",
     "tap-spec": "^4.1.1",
-    "tape": "^4.8.0"
+    "tape": "^4.8.0",
+    "tape-watch": "^2.3.0"
   }
 }
