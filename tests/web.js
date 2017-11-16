@@ -11,16 +11,16 @@ test('Web server', t => {
     .get('/')
     .expect(404)
     .end((err, res) => {
-      const msg = 'Erreur 404 : page introuvable';
+      const msg = 'Erreur 404 : /';
       if (err) return t.fail(msg);
       t.pass(msg);
     });
 
   request(serveur)
     .get(`/${process.env.APP}`)
-    .expect(200)
+    .expect(404)
     .end((err, res) => {
-      const msg = 'Get /coursera/index.html';
+      const msg = 'Erreur 404 : /coursera';
       if (err) return t.fail(msg);
       t.pass(msg);
     });
@@ -32,7 +32,7 @@ test('Web server', t => {
     .send(data)
     .expect(200)
     .end((err, res) => {
-      const msg = 'Post MNIST matrix to /coursera';
+      const msg = 'POST : MNIST matrix to /coursera';
       if (err) return t.fail(msg);
       t.pass(msg);
     });
