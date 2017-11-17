@@ -5,7 +5,7 @@ const serveur = require('serveur');
 const Learning = require('Learning');
 
 test('Web server', t => {
-  t.plan(8);
+  t.plan(11);
 
   request(serveur)
     .get('/')
@@ -63,6 +63,7 @@ test('Web server', t => {
     .end((err, res) => {
       const msg = 'POST /coursera/mnist/cost';
       if (err) return t.fail(msg);
+      t.equal(res.body.cost, 0.38377, 'Cost Function (w/ Regularization) should be: 0.38377');
       t.pass(msg);
     });
 
@@ -73,6 +74,7 @@ test('Web server', t => {
     .end((err, res) => {
       const msg = 'POST /coursera/mnist/grad';
       if (err) return t.fail(msg);
+      t.equal(res.body.grad, 9, 'Expect Theta1: [] and Theta2: []');
       t.pass(msg);
     });
 
@@ -83,6 +85,7 @@ test('Web server', t => {
     .end((err, res) => {
       const msg = 'POST /coursera/mnist/predict';
       if (err) return t.fail(msg);
+      t.equal(res.body.predict, 9, 'Neural Network Prediction should be 9');
       t.pass(msg);
     });
 });

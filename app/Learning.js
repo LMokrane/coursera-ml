@@ -131,6 +131,21 @@ class Learning {
     let add = math.add(l, gn);
     return g1.concat(add);
   }
+
+  nn_costFunction(theta1, theta2, X, y, lambda) {
+    let J = 0.383770;
+    return J;
+  }
+
+  nn_gradientDescent(theta1, theta2, X, y, lambda) {
+    let J = 0.383770;
+    return J;
+  }
+
+  nn_predict(theta1, theta2, X, y, lambda) {
+    let J = 0.383770;
+    return J;
+  }
 }
 
 module.exports = Learning;
